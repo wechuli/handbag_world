@@ -1,0 +1,23 @@
+{
+  "name": "handbag_world",
+  "version": "1.0.0",
+  "description": "handbag ecommerce",
+  "main": "index.js",
+  "repository": "https://github.com/wechuli/handbag_world.git",
+  "author": "Wechuli <wechulipaul@yahoo.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^3.0.8",
+    "body-parser": "^1.19.0",
+    "cloudinary": "^1.19.0",
+    "concurrently": "^5.1.0",
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-formidable": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.9.0",
+    "multer": "^1.4.2"
+  }
+}
