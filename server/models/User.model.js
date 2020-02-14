@@ -7,7 +7,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
     trim: true,
-    unique: 1
+    unique: true
   },
   password: {
     type: String,
@@ -56,5 +56,7 @@ userSchema.pre("save", async function(next) {
   }
   next();
 });
+
 const User = model("User", userSchema);
+
 module.exports = User;
