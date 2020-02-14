@@ -11,7 +11,7 @@ module.exports = {
 
       res.status(200).json({ success: true, userdata: user });
     } catch (error) {
-      res.status(401).json({ success: false, err: error });
+      res.status(500).json({ success: false, err: error });
     }
   }
 };

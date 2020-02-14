@@ -1,4 +1,6 @@
 const { model, Schema } = require("mongoose");
+const bcrypt = require("bcrypt");
+const SALT_I = 10;
 
 const userSchema = new Schema({
   email: {
@@ -42,5 +44,17 @@ const userSchema = new Schema({
   }
 });
 
+// hash the plain text passowrd before saving
+userSchema.pre("save", async function(next) {
+  // store this in a variable
+  const user = this;
+
+  // only hash the password if the password has been changed
+
+  if (user.isModified("password")) {
+    user.password = await bcrypt.hash(user.password, SALT_I);
+  }
+  next();
+});
 const User = model("User", userSchema);
 module.exports = User;
