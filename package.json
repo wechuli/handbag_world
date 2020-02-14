@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "handbag ecommerce",
   "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "server": "env-cmd -f ./config/dev.env nodemon server/server.js"
+  },
   "repository": "https://github.com/wechuli/handbag_world.git",
   "author": "Wechuli <wechulipaul@yahoo.com>",
   "license": "MIT",
@@ -12,12 +16,20 @@
     "cloudinary": "^1.19.0",
     "concurrently": "^5.1.0",
     "cookie-parser": "^1.4.4",
-    "dotenv": "^8.2.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
+    "helmet": "^3.21.2",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
     "mongoose": "^5.9.0",
+    "morgan": "^1.9.1",
     "multer": "^1.4.2"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0",
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2"
   }
 }
