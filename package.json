@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
-    "server": "env-cmd -f ./config/dev.env nodemon server/server.js"
+    "server": "env-cmd -f ./config/dev.env nodemon server/server.js",
+    "test": "env-cmd -f ./config/test.env jest --watch --runInBand"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "verbose": true
   },
   "repository": "https://github.com/wechuli/handbag_world.git",
   "author": "Wechuli <wechulipaul@yahoo.com>",

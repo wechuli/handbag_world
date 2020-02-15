@@ -31,7 +31,7 @@ mongoose
   .then(() => {
     console.info("Database successfully connected");
   })
-  .catch(error => console.error(error));
+  .catch(error => console.info(error));
 
 // routes
 

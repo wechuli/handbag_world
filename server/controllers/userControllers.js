@@ -1,6 +1,8 @@
 const User = require("../models/User.model");
 
 module.exports = {
+
+  // register a new user
   async registerUsers(req, res) {
     const { email, name, lastname, password } = req.body;
     try {
@@ -9,7 +11,7 @@ module.exports = {
 
       await user.save();
 
-      res.status(200).json({ success: true, userdata: user });
+      res.status(201).json({ success: true, userdata: user });
     } catch (error) {
       res.status(500).json({ success: false, err: error });
     }
