@@ -13,4 +13,8 @@ router.post(
   registerUsers
 );
 
+// login a user
+
+router.post("/login")
+
 module.exports = router;

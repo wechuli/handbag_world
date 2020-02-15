@@ -39,8 +39,21 @@ describe("user registration", () => {
     //   user should not have been created
     const user = await User.findOne({ email: "wechulipaul12334@gmail.com" });
     expect(user).toBeNull();
-
   });
 
-  test("should return an error if ")
+  test("should return an error if email address is malformed", async () => {
+    const response = await request(app)
+      .post("/api/users/register")
+      .send({
+        email: "wechulipaul12334@", //invalid email address
+        name: "Paulo",
+        password: "mysecurepass",
+        lastname: "Lastname"
+      })
+      .expect(400);
+
+    //   user should not have been created
+    const user = await User.findOne({ email: "wechulipaul12334@" });
+    expect(user).toBeNull();
+  });
 });

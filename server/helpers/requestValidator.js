@@ -11,6 +11,8 @@ module.exports = {
     };
   },
   schemas: {
+
+    // login schema
     userRegistrationSchema: Joi.object({
       email: Joi.string()
         .email()
@@ -23,6 +25,17 @@ module.exports = {
         .min(2)
         .max(100)
         .required(),
+      password: Joi.string()
+        .min(5)
+        .required()
+    }),
+
+    // password schema
+    userLogin: Joi.object({
+      email: Joi.string()
+        .email()
+        .required(),
+
       password: Joi.string()
         .min(5)
         .required()

@@ -15,5 +15,14 @@ module.exports = {
     } catch (error) {
       res.status(500).json({ success: false, err: error });
     }
+  },
+
+  // login a user
+  async loginUser(req,res){
+    try {
+      
+    } catch (error) {
+      
+    }
   }
 };
