@@ -1,9 +1,16 @@
 const express = require("express");
-const {} = require('')
+const { schemas, validateBody } = require("../helpers/requestValidator");
+
 const { registerUsers } = require("../controllers/userControllers");
 
 const router = express.Router();
 
-router.post("/register", registerUsers);
+
+// register a new user
+router.post(
+  "/register",
+  validateBody(schemas.userRegistrationSchema),
+  registerUsers
+);
 
 module.exports = router;

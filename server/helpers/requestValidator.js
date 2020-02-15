@@ -5,7 +5,7 @@ module.exports = {
     return (req, res, next) => {
       const result = schema.validate(req.body);
       if (result.error) {
-        return res.status(400).json({ success: false, err: error });
+        return res.status(400).json({ success: false, err: result.error });
       }
       next();
     };

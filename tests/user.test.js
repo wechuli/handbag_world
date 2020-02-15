@@ -25,4 +25,22 @@ describe("user registration", () => {
     // test that the password hashing worked correctly
     expect(user.password).not.toBe(userOne.password);
   });
+
+  test("should return 400 (Bad request if user details are missing)", async () => {
+    const response = await request(app)
+      .post("/api/users/register")
+      .send({
+        email: "wechulipaul12334@gmail.com",
+        name: "Paulo",
+        password: "mysecurepass" //missing lastname
+      })
+      .expect(400);
+
+    //   user should not have been created
+    const user = await User.findOne({ email: "wechulipaul12334@gmail.com" });
+    expect(user).toBeNull();
+
+  });
+
+  test("should return an error if ")
 });
