@@ -1,5 +1,6 @@
 const { model, Schema } = require("mongoose");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const SALT_I = 10;
 
 const userSchema = new Schema({
@@ -57,6 +58,16 @@ userSchema.pre("save", async function(next) {
   next();
 });
 
+// this is an instance method to generate token
+userSchema.methods.generateAuthToken = async function() {
+  const user = this;
+  const token = jwt.sign(user._id.toHexString(), process.env.JWT_SECRET);
+
+  user.token = token;
+  await user.save();
+  return token;
+};
+
 //define a method on the userSchema that will confirm credentials when called. This a model method
 userSchema.statics.findByCredentials = async (email, password) => {
   const user = await User.findOne({ email });
@@ -71,7 +82,6 @@ userSchema.statics.findByCredentials = async (email, password) => {
 
   return user;
 };
-
 
 const User = model("User", userSchema);
 

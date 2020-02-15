@@ -24,16 +24,33 @@ module.exports = {
       // find email
       const user = User.findOne({ email });
 
-      if(!user){
-        return res.status(401).json({loginSuccess:false,message:"Auth failed"})
+      if (!user) {
+        return res.status(401).json({
+          loginSuccess: false,
+          message: "Auth failed wrong email/password"
+        });
       }
-
 
       // check password
 
-      // generate token
-    } catch (error) {
+      //note the findByCredentials method is on the Model/Collection since it involves searching through the whole collection
+      User.findByCredentials(email, password)
+        .then(user => {
+          user.generateAuthToken().then(token => {
+            res
+              .cookie("w_auth", user.token)
+              .status(200)
+              .json({ loginSuccess: true });
+          });
+        })
+        .catch(err => {
+          return res.status(401).json({
+            loginSuccess: false,
+            message: "Auth failed wrong email/password"
+          });
+        });
 
-    }
+      // generate token
+    } catch (error) {}
   }
 };
