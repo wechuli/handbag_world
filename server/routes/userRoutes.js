@@ -1,10 +1,9 @@
 const express = require("express");
 const { schemas, validateBody } = require("../helpers/requestValidator");
 
-const { registerUsers } = require("../controllers/userControllers");
+const { registerUsers, loginUser } = require("../controllers/userControllers");
 
 const router = express.Router();
-
 
 // register a new user
 router.post(
@@ -14,7 +13,6 @@ router.post(
 );
 
 // login a user
-
-router.post("/login")
+router.post("/login", validateBody(schemas.userLogin), loginUser);
 
 module.exports = router;

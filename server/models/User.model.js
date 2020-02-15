@@ -57,6 +57,22 @@ userSchema.pre("save", async function(next) {
   next();
 });
 
+//define a method on the userSchema that will confirm credentials when called. This a model method
+userSchema.statics.findByCredentials = async (email, password) => {
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw new Error("Unable to login");
+  }
+  const isMatch = await bcrypt.compare(password, user.password);
+
+  if (!isMatch) {
+    throw new Error("Unable to login");
+  }
+
+  return user;
+};
+
+
 const User = model("User", userSchema);
 
 module.exports = User;
