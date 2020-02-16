@@ -70,5 +70,15 @@ module.exports = {
     } catch (error) {
       res.status(500).json({ error });
     }
+  },
+
+  async logoutUser(req, res) {
+    const { user } = req;
+    try {
+      await User.findOneAndUpdate({ _id: user._id }, { token: "" });
+      res.status(200).json({ success: true });
+    } catch (err) {
+      res.status(500).json({ success: false, err });
+    }
   }
 };

@@ -4,7 +4,8 @@ const { schemas, validateBody } = require("../middleware/requestValidator");
 const {
   registerUsers,
   loginUser,
-  authenticateUser
+  authenticateUser,
+  logoutUser
 } = require("../controllers/userControllers");
 
 const authMiddleware = require("../middleware/auth");
@@ -23,5 +24,8 @@ router.post("/login", validateBody(schemas.userLogin), loginUser);
 
 // auth route
 router.get("/auth", authMiddleware, authenticateUser);
+
+// logout user
+router.get("/logout", authMiddleware, logoutUser);
 
 module.exports = router;
