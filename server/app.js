@@ -6,7 +6,8 @@ const helmet = require("helmet");
 const cors = require("cors");
 
 // import routes
-const userRoutes = require("./routes/userRoutes");
+const userRoutes = require("./routes/userRoutes"),
+  productRoutes = require("./routes/productRoutes");
 
 const app = express();
 
@@ -36,6 +37,7 @@ mongoose
 // routes
 
 app.use("/api/users", userRoutes);
+app.use("api/product",productRoutes);
 
 // 404 default route
 

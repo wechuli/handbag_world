@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const User = require("../../server/models/User.model");
+const Brand = require("../../server/models/Brand.model");
 
 // dummy user objects
 const userOne = {
@@ -19,6 +20,7 @@ const userTwo = {
 // clear all database records
 const clearAllDatabaseRecords = async () => {
   await User.deleteMany();
+  await Brand.deleteMany();
 };
 
 // make valid dummy user in db
@@ -26,7 +28,6 @@ const clearAllDatabaseRecords = async () => {
 const makeSingleValidDummyUser = async () => {
   const user = new User(userTwo);
   await user.save();
- 
 };
 
 module.exports = {
