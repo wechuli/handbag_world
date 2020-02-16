@@ -55,7 +55,11 @@ module.exports = {
   },
 
   async authenticateUser(req, res) {
+    const { user } = req;
     try {
-    } catch (error) {}
+      res.status(200).json({ user });
+    } catch (error) {
+      res.status(500).json({ error });
+    }
   }
 };
