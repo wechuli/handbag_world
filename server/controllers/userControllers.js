@@ -11,7 +11,7 @@ module.exports = {
 
       await user.save();
 
-      res.status(201).json({ success: true, userdata: user });
+      res.status(201).json({ success: true });
     } catch (error) {
       res.status(500).json({ success: false, err: error });
     }
@@ -57,7 +57,16 @@ module.exports = {
   async authenticateUser(req, res) {
     const { user } = req;
     try {
-      res.status(200).json({ user });
+      res.status(200).json({
+        isAdmin: user.role !== 0,
+        isAuth: true,
+        email: user.email,
+        name: user.name,
+        lastname: user.lastname,
+        role: user.role,
+        cart: user.cart,
+        history: user.hostory
+      });
     } catch (error) {
       res.status(500).json({ error });
     }

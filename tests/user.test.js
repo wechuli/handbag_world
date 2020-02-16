@@ -1,5 +1,6 @@
 const request = require("supertest");
 const app = require("../server/app");
+
 const User = require("../server/models/User.model");
 
 const {
@@ -23,7 +24,7 @@ describe("user registration", () => {
       .expect(201);
 
     //   assert that the database was changed correctly
-    const user = await User.findById(response.body.userdata._id);
+    const user = await User.findOne({ email: userOne.email });
 
     expect(user).not.toBeNull();
 
@@ -79,7 +80,8 @@ describe("user login", () => {
       })
       .expect(200);
 
-    // assert that a cookie was set   
+    // assert that a cookie was set
+    console.log(response["headers"]["set-cookie"]);
 
     expect(response["headers"]["set-cookie"].length).toBe(1);
   });
@@ -93,4 +95,9 @@ describe("user login", () => {
       })
       .expect(401);
   });
+
+  // test("should successfully authenticate user with valid cookie",async ()=>{
+  //   let cookie;
+  //   const initialLoginRequest = await request(app)
+  // })
 });

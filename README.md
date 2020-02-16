@@ -17,3 +17,10 @@ Full stack application for selling handbags, built on top of the MERN stack.
 
 
 yarn add bcrypt body-parser cloudinary concurrently cookie-parser dotenv express express-formidable jsonwebtoken moment mongoose multer
+
+
+## My References
+
+### Auth
+
+- Testing auth with cookies - https://stackoverflow.com/questions/14001183/how-to-authenticate-supertest-requests-with-passport
