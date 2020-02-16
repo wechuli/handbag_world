@@ -1,9 +1,13 @@
 const express = require("express");
 const { schemas, validateBody } = require("../helpers/requestValidator");
 
-const { registerUsers, loginUser } = require("../controllers/userControllers");
+const { registerUsers, loginUser,authenticateUser } = require("../controllers/userControllers");
+
+const authMiddleware = require('../middleware/auth')
 
 const router = express.Router();
+
+
 
 // register a new user
 router.post(
@@ -14,5 +18,9 @@ router.post(
 
 // login a user
 router.post("/login", validateBody(schemas.userLogin), loginUser);
+
+// auth route
+
+router.get("/auth",)
 
 module.exports = router;

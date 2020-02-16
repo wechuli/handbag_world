@@ -52,5 +52,10 @@ module.exports = {
 
       // generate token
     } catch (error) {}
+  },
+
+  async authenticateUser(req, res) {
+    try {
+    } catch (error) {}
   }
 };

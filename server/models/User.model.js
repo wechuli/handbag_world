@@ -61,7 +61,7 @@ userSchema.pre("save", async function(next) {
 // this is an instance method to generate token
 userSchema.methods.generateAuthToken = async function() {
   const user = this;
-  const token = jwt.sign(user._id.toHexString(), process.env.JWT_SECRET);
+  const token = jwt.sign(user._id.toHexString(), process.env.JWT_SECRET,{expiresIn:"2 days"});
 
   user.token = token;
   await user.save();
@@ -81,6 +81,14 @@ userSchema.statics.findByCredentials = async (email, password) => {
   }
 
   return user;
+};
+
+// define a static method that will find and return a user given the token
+
+userSchema.statics.findByToken = async function(token) {
+  const user = this;
+
+  jwt.verify(token,process.env.JWT_SECRET).
 };
 
 const User = model("User", userSchema);
