@@ -7,7 +7,7 @@ const {
   clearAllDatabaseRecords,
   userOne,
   userTwo,
-  makeSingleValidDummyUser,
+  makeDummyUsers,
   handbagBrands
 } = require("./fixtures/db");
 
@@ -28,7 +28,7 @@ beforeEach(() => {
 describe("Brand crud operations", () => {
   // make a valid user before the tests, this is userTwo
   beforeAll(() => {
-    return makeSingleValidDummyUser();
+    return makeDummyUsers();
   });
   const agent = request.agent(app);
   test("should set user to perform brand CRUD actions", async () => {
@@ -47,7 +47,7 @@ describe("Brand crud operations", () => {
       .send({ name: handbagBrands[0] })
       .expect(200);
 
-    //   check db to confirm brand was created
+    //check db to confirm brand was created
     const brand = await Brand.findOne({ name: handbagBrands[0] });
     expect(brand).not.toBeNull();
   });

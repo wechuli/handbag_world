@@ -6,7 +6,7 @@ const {
   clearAllDatabaseRecords,
   userOne,
   userTwo,
-  makeSingleValidDummyUser
+  makeDummyUsers
 } = require("./fixtures/db");
 
 /*
@@ -74,7 +74,7 @@ describe("user registration", () => {
 describe("user login", () => {
   // make a valid user before the tests, this is userTwo
   beforeAll(() => {
-    return makeSingleValidDummyUser();
+    return makeDummyUsers();
   });
 
   test("should login a valid user", async () => {

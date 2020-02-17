@@ -64,7 +64,7 @@ userSchema.methods.generateAuthToken = async function() {
   // const token = jwt.sign(user._id.toHexString(), process.env.JWT_SECRET, {
   //   expiresIn: "2 days"
   // });
-  const token = jwt.sign(user._id.toHexString(),process.env.JWT_SECRET);
+  const token = jwt.sign(user._id.toHexString(), process.env.JWT_SECRET);
 
   user.token = token;
   await user.save();

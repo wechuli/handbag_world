@@ -11,10 +11,21 @@ const userOne = {
 };
 
 const userTwo = {
+  //this user is an admin
   email: "ulemseeone@gmail.com",
   password: "thisisasecur8epa55w0rD",
   name: "Ule",
-  lastname: "Msee"
+  lastname: "Msee",
+  role: 1
+};
+
+const userThree = {
+  //this user is a normal user
+  email: "adummyemail@gmail.com",
+  password: "passwordsarehard",
+  name: "First",
+  lastname: "Nameless",
+  role: 0
 };
 
 // dummy brands
@@ -34,15 +45,18 @@ const clearAllDatabaseRecords = async () => {
 
 // make valid dummy user in db
 
-const makeSingleValidDummyUser = async () => {
-  const user = new User(userTwo);
-  await user.save();
+const makeDummyUsers = async () => {
+  const adminUser = new User(userTwo);
+  await adminUser.save();
+
+  const normalUser = new User(userThree);
+  await normalUser.save();
 };
 
 module.exports = {
   clearAllDatabaseRecords,
   userOne,
   userTwo,
-  makeSingleValidDummyUser,
+  makeDummyUsers,
   handbagBrands
 };
