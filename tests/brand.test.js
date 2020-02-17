@@ -78,4 +78,8 @@ describe("Brand CRUD operations - normal user", () => {
     const brand = await Brand.findOne({ name: handbagBrands[1] });
     expect(brand).toBeNull();
   });
+
+  test("should return a list of all brands", async () => {
+    await agent.get("/api/product/brand").expect(200);
+  });
 });

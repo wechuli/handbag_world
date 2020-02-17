@@ -1,6 +1,9 @@
 const express = require("express");
 const { auth, checkAdmin } = require("../middleware/auth");
-const { createNewBrand } = require("../controllers/productControllers");
+const {
+  createNewBrand,
+  getAllBrands
+} = require("../controllers/productControllers");
 const { schemas, validateBody } = require("../middleware/requestValidator");
 
 const router = express.Router();
@@ -17,5 +20,9 @@ router.post(
   validateBody(schemas.brandSchema),
   createNewBrand
 );
+
+// get all brands
+
+router.get("/brand", getAllBrands);
 
 module.exports = router;
