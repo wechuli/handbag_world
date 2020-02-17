@@ -25,4 +25,9 @@ router.post(
 
 router.get("/brand", getAllBrands);
 
+
+//============================================
+//              BAG TYPE
+//=============================================
+
 module.exports = router;
