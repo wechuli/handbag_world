@@ -16,4 +16,16 @@ async function auth(req, res, next) {
   }
 }
 
-module.exports = auth;
+function checkAdmin(req, res, next) {
+  if (req.user.role === 0) {
+    return res
+      .status(401)
+      .json({ success: faslse, message: "Action not allowed" });
+  }
+  next();
+}
+
+module.exports = {
+  auth,
+  checkAdmin
+};

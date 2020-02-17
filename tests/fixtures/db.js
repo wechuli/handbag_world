@@ -47,16 +47,17 @@ const clearAllDatabaseRecords = async () => {
 
 const makeDummyUsers = async () => {
   const adminUser = new User(userTwo);
-  await adminUser.save();
-
   const normalUser = new User(userThree);
   await normalUser.save();
+  await adminUser.save();
+  // await User.insertMany[(userTwo, userThree)];
 };
 
 module.exports = {
   clearAllDatabaseRecords,
   userOne,
   userTwo,
+  userThree,
   makeDummyUsers,
   handbagBrands
 };

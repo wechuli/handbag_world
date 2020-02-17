@@ -14,6 +14,11 @@ The makeDummyUsers creates dummy users of both admin and normal roles - all thes
 
 */
 
+// make a valid dummy users - both admin and normal
+beforeAll(() => {
+  return makeDummyUsers();
+});
+
 // clear all records from the test db after tests have finished
 afterAll(() => {
   return clearAllDatabaseRecords();
@@ -72,11 +77,6 @@ describe("user registration", () => {
 });
 
 describe("user login", () => {
-  // make a valid user before the tests, this is userTwo
-  beforeAll(() => {
-    return makeDummyUsers();
-  });
-
   test("should login a valid user", async () => {
     const response = await request(app)
       .post("/api/users/login")
