@@ -22,22 +22,21 @@ app.use(express.urlencoded({ extended: false }));
 // mongoose connection setup
 mongoose.Promise = global.Promise;
 
-mongoose
-  .connect(process.env.MONGO_URI, {
-    useCreateIndex: true,
-    useNewUrlParser: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true
-  })
-  .then(() => {
-    console.info("Database successfully connected");
-  })
-  .catch(error => console.info(error));
+mongoose.connect(process.env.MONGO_URI, {
+  useCreateIndex: true,
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true
+});
+// .then(() => {
+//   console.info("Database successfully connected");
+// })
+// .catch(error => console.info(error));
 
 // routes
 
 app.use("/api/users", userRoutes);
-app.use("/api/product",productRoutes);
+app.use("/api/product", productRoutes);
 
 // 404 default route
 

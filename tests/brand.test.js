@@ -12,7 +12,7 @@ const {
 } = require("./fixtures/db");
 
 /*
-The makeSingleValidDummyUser() function makes a single user in the DB using userTwo details - all these found of the fixtures/db.js file
+The makeDummyUsers creates dummy users of both admin and normal roles - all these found of the fixtures/db.js file
 
 */
 
