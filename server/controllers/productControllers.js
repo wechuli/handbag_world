@@ -28,12 +28,12 @@ module.exports = {
     }
   },
 
-  // create a new brand
+  // create a new bag types
   async createNewBagType(req, res) {
     const { name } = req.body;
     try {
       const bagType = new BagType({ name });
-      await brand.save();
+      await bagType.save();
       res.status(200).json({
         success: true,
         bagType
@@ -43,7 +43,7 @@ module.exports = {
     }
   },
 
-  // find and return all brands
+  // find and return all bag types
 
   async getAllBagTypes(req, res) {
     try {

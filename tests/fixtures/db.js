@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const User = require("../../server/models/User.model");
 const Brand = require("../../server/models/Brand.model");
+const BagTypes = require("../../server/models/BagType.model");
 
 // dummy user objects
 const userOne = {
@@ -37,10 +38,15 @@ const handbagBrands = [
   "Wechuli Basket"
 ];
 
+// dummy bagTypes
+
+const handbagTypes = ["Satchel", "Saddlebag", "Duffel", "Frame bag"];
+
 // clear all database records
 const clearAllDatabaseRecords = async () => {
   await User.deleteMany();
   await Brand.deleteMany();
+  await BagTypes.deleteMany();
 };
 
 // make valid dummy user in db
@@ -59,5 +65,6 @@ module.exports = {
   userTwo,
   userThree,
   makeDummyUsers,
-  handbagBrands
+  handbagBrands,
+  handbagTypes
 };

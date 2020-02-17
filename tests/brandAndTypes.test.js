@@ -2,6 +2,7 @@ const request = require("supertest");
 const app = require("../server/app");
 const User = require("../server/models/User.model");
 const Brand = require("../server/models/Brand.model");
+const BagType = require("../server/models/BagType.model");
 
 const {
   clearAllDatabaseRecords,
@@ -9,7 +10,8 @@ const {
   userTwo,
   userThree,
   makeDummyUsers,
-  handbagBrands
+  handbagBrands,
+  handbagTypes
 } = require("./fixtures/db");
 
 /*
@@ -53,6 +55,18 @@ describe("Brand crud operations - Admin", () => {
     const brand = await Brand.findOne({ name: handbagBrands[0] });
     expect(brand).not.toBeNull();
   });
+
+  test("should succeffully create a new bag type in the database", async () => {
+    const resp = await agent
+      .post("/api/product/bagtype")
+      .send({ name: handbagTypes[0] })
+      .expect(200);
+
+ 
+    //check db to confirm bag type was created
+    const bagType = await BagType.findOne({ name: handbagTypes[0] });
+    expect(bagType).not.toBeNull();
+  });
 });
 
 describe("Brand CRUD operations - normal user", () => {
@@ -81,5 +95,9 @@ describe("Brand CRUD operations - normal user", () => {
 
   test("should return a list of all brands", async () => {
     await agent.get("/api/product/brand").expect(200);
+  });
+
+  test("should return a list of all bag types", async () => {
+    await agent.get("/api/product/bagtype").expect(200);
   });
 });

@@ -9,6 +9,6 @@ const bagTypeSchema = new Schema({
   }
 });
 
-const BagType = model("bagtype", bagTypeSchema);
+const BagType = model("Bagtype", bagTypeSchema);
 
 module.exports = BagType;

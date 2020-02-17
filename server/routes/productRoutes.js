@@ -2,7 +2,9 @@ const express = require("express");
 const { auth, checkAdmin } = require("../middleware/auth");
 const {
   createNewBrand,
-  getAllBrands
+  getAllBrands,
+  createNewBagType,
+  getAllBagTypes
 } = require("../controllers/productControllers");
 const { schemas, validateBody } = require("../middleware/requestValidator");
 
@@ -25,9 +27,21 @@ router.post(
 
 router.get("/brand", getAllBrands);
 
-
 //============================================
 //              BAG TYPE
 //=============================================
+
+// create a new bagtype
+router.post(
+  "/bagtype",
+  auth,
+  checkAdmin,
+  validateBody(schemas.brandSchema),
+  createNewBagType
+);
+
+// get all brands
+
+router.get("/bagtype", getAllBagTypes);
 
 module.exports = router;
