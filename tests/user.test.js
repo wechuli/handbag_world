@@ -86,7 +86,7 @@ describe("user login", () => {
       })
       .expect(200);
 
-    // assert that a cookie was set   
+    // assert that a cookie was set
 
     expect(response["headers"]["set-cookie"]).toBeTruthy();
   });
@@ -100,7 +100,6 @@ describe("user login", () => {
       })
       .expect(401);
   });
-
 });
 
 describe("auth with cookies", () => {
