@@ -17,13 +17,14 @@ The makeDummyUsers creates dummy users of both admin and normal roles - all thes
 
 */
 
-// make a valid dummy users - both admin and normal
-beforeAll(() => {
-  return makeDummyUsers();
-});
 // clear all records from the test db after tests have finished
 afterAll(() => {
   return clearAllDatabaseRecords();
+});
+
+// make a valid dummy users - both admin and normal
+beforeAll(() => {
+  return makeDummyUsers();
 });
 
 beforeEach(() => {
