@@ -9,6 +9,11 @@ const {
   makeSingleValidDummyUser
 } = require("./fixtures/db");
 
+/*
+The makeSingleValidDummyUser() function makes a single user in the DB using userTwo details - all these found of the fixtures/db.js file
+
+*/
+
 // clear all records from the test db after tests have finished
 afterAll(() => {
   return clearAllDatabaseRecords();
@@ -69,7 +74,6 @@ describe("user registration", () => {
 describe("user login", () => {
   // make a valid user before the tests, this is userTwo
   beforeAll(() => {
-    jest.setTimeout(10000);
     return makeSingleValidDummyUser();
   });
 
@@ -82,10 +86,9 @@ describe("user login", () => {
       })
       .expect(200);
 
-    // assert that a cookie was set
-    console.log(response["headers"]["set-cookie"]);
+    // assert that a cookie was set   
 
-    expect(response["headers"]["set-cookie"].length).toBe(1);
+    expect(response["headers"]["set-cookie"]).toBeTruthy();
   });
 
   test("should not authenticate with wrong password", async () => {
@@ -98,10 +101,6 @@ describe("user login", () => {
       .expect(401);
   });
 
-  // test("should successfully authenticate user with valid cookie",async ()=>{
-  //   let cookie;
-  //   const initialLoginRequest = await request(app)
-  // })
 });
 
 describe("auth with cookies", () => {
