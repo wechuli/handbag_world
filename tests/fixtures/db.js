@@ -17,6 +17,15 @@ const userTwo = {
   lastname: "Msee"
 };
 
+// dummy brands
+
+const handbagBrands = [
+  "Yallo Leather",
+  "Coach Factory",
+  "Kate Spade New York",
+  "Wechuli Basket"
+];
+
 // clear all database records
 const clearAllDatabaseRecords = async () => {
   await User.deleteMany();
@@ -34,5 +43,6 @@ module.exports = {
   clearAllDatabaseRecords,
   userOne,
   userTwo,
-  makeSingleValidDummyUser
+  makeSingleValidDummyUser,
+  handbagBrands
 };

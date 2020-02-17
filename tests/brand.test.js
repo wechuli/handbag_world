@@ -7,7 +7,8 @@ const {
   clearAllDatabaseRecords,
   userOne,
   userTwo,
-  makeSingleValidDummyUser
+  makeSingleValidDummyUser,
+  handbagBrands
 } = require("./fixtures/db");
 
 /*
@@ -43,7 +44,11 @@ describe("Brand crud operations", () => {
   test("should succeffully create a new brand in the database", async () => {
     await agent
       .post("/api/product/brand")
-      .send({ name: "Yallo Leathers" })
+      .send({ name: handbagBrands[0] })
       .expect(200);
+
+    //   check db to confirm brand was created
+    const brand = await Brand.findOne({ name: handbagBrands[0] });
+    expect(brand).not.toBeNull();
   });
 });
