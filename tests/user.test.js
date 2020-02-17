@@ -10,13 +10,13 @@ const {
 } = require("./fixtures/db");
 
 // clear all records from the test db after tests have finished
-afterAll(() => {  
+afterAll(() => {
   return clearAllDatabaseRecords();
 });
 
-beforeEach(()=>{
+beforeEach(() => {
   jest.setTimeout(10000);
-})
+});
 
 describe("user registration", () => {
   test("should succeffully sign up a new user", async () => {
@@ -102,4 +102,47 @@ describe("user login", () => {
   //   let cookie;
   //   const initialLoginRequest = await request(app)
   // })
+});
+
+describe("auth with cookies", () => {
+  const agent = request.agent(app);
+
+  test("should not authorize unauthenticated users", async () => {
+    await agent.get("/api/users/auth").expect(401);
+  });
+
+  test("should set a cookie if user logs in successfully", async () => {
+    const response = await agent
+      .post("/api/users/login")
+      .send({
+        email: userTwo.email,
+        password: userTwo.password
+      })
+      .expect(200);
+
+    // check to see if user cookie has been set on the database
+    const user = await User.findOne({
+      email: userTwo.email
+    });
+
+    expect(user.token).toBeTruthy();
+  });
+
+  test("should successfully login a user after the cookie has been set", async () => {
+    await agent.get("/api/users/auth").expect(200);
+  });
+
+  test("should successfully logout a user upon request", async () => {
+    await agent.get("/api/users/logout").expect(200);
+
+    // check db if token has been deleted
+    const user = await User.findOne({
+      email: userTwo.email
+    });
+    expect(user.token).toBeFalsy();
+  });
+
+  test("should not authorize a user that has already logged out, even when using a previously set cookie", async () => {
+    await agent.get("/api/users/auth").expect(401);
+  });
 });
