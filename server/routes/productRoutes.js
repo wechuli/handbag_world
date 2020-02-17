@@ -24,7 +24,6 @@ router.post(
 );
 
 // get all brands
-
 router.get("/brand", getAllBrands);
 
 //============================================
@@ -41,7 +40,13 @@ router.post(
 );
 
 // get all brands
-
 router.get("/bagtype", getAllBagTypes);
+
+
+//============================================
+//              PRODUCTS
+//=============================================
+
+
 
 module.exports = router;
