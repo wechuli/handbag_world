@@ -37,8 +37,8 @@ const productSchema = new Schema(
     handles: {
       type: Number,
       required: true,
-      min: 1,
-      max: 5
+      min: 0,
+      max: 7
     },
     sold: {
       type: Number,

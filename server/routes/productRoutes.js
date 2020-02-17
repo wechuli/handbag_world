@@ -4,7 +4,8 @@ const {
   createNewBrand,
   getAllBrands,
   createNewBagType,
-  getAllBagTypes
+  getAllBagTypes,
+  addNewProduct
 } = require("../controllers/productControllers");
 const { schemas, validateBody } = require("../middleware/requestValidator");
 
@@ -42,11 +43,16 @@ router.post(
 // get all brands
 router.get("/bagtype", getAllBagTypes);
 
-
 //============================================
 //              PRODUCTS
 //=============================================
 
-
+router.post(
+  "/article",
+  auth,
+  checkAdmin,
+  validateBody(schemas.productSchema),
+  addNewProduct
+);
 
 module.exports = router;

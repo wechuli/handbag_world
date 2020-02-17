@@ -47,6 +47,30 @@ module.exports = {
         .min(2)
         .max(100)
         .required()
+    }),
+
+    // product schema
+
+    productSchema: Joi.object({
+      name: Joi.string()
+        .min(2)
+        .max(100)
+        .required(),
+      description: Joi.string().required(),
+      price: Joi.number().required(),
+      brand: Joi.string()
+        .regex(/^[0-9a-fA-F]{24}$/)
+        .required(),
+      shipping: Joi.bool().required(),
+      available: Joi.bool().required(),
+      type: Joi.string()
+        .regex(/^[0-9a-fA-F]{24}$/)
+        .required(),
+      handles: Joi.number()
+        .required()
+        .max(7)
+        .min(0),
+      publish: Joi.bool().required()
     })
   }
 };

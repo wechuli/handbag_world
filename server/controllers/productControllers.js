@@ -1,5 +1,6 @@
 const Brand = require("../models/Brand.model");
 const BagType = require("../models/BagType.model");
+const Product = require("../models/Product.model");
 
 module.exports = {
   // create a new brand
@@ -49,6 +50,17 @@ module.exports = {
     try {
       const bagTypes = await BagType.find({});
       res.status(200).json({ bagTypes });
+    } catch (error) {
+      res.status(500).json({ success: false, err: error });
+    }
+  },
+
+  // Add new product
+  async addNewProduct(req, res) {
+    try {
+      const product = new Product(req.body);
+      await product.save();
+      res.status(201).json({ success: true, article: product });
     } catch (error) {
       res.status(500).json({ success: false, err: error });
     }
