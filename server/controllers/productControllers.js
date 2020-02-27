@@ -50,7 +50,7 @@ module.exports = {
   async getAllBagTypes(req, res) {
     try {
       const bagTypes = await BagType.find({});
-      res.status(200).json({ bagTypes });
+      res.status(200).json({ success: true, bagTypes });
     } catch (error) {
       res.status(500).json({ success: false, err: error });
     }
@@ -79,7 +79,26 @@ module.exports = {
         .populate("type brand")
         .exec();
 
-      res.status(200).json({ products });
+      res.status(200).json({ success: true, products });
+    } catch (error) {
+      res.status(500).json({ success: false, err: error });
+    }
+  },
+
+  // get products sorted by number sold or by new arrivals
+
+  async getTopProducts(req, res) {
+    let order = req.query.order ? req.query.order : "asc";
+    let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
+    let limit = req.query.limit ? req.query.limit : 100;
+
+    try {
+      const products = await Product.find()
+        .limit(parseInt(limit))
+        .populate("type brand")
+        .sort({ [sortBy]: order })
+        .exec();
+      res.status(200).json({ success: true, products });
     } catch (error) {
       res.status(500).json({ success: false, err: error });
     }

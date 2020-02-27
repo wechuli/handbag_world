@@ -6,7 +6,8 @@ const {
   createNewBagType,
   getAllBagTypes,
   addNewProduct,
-  getProductsById
+  getProductsById,
+  getTopProducts
 } = require("../controllers/productControllers");
 const { schemas, validateBody } = require("../middleware/requestValidator");
 
@@ -63,5 +64,10 @@ router.get(
   validateBody(schemas.productByIdSearchSchema),
   getProductsById
 );
+
+//sort products by arrival  /articles
+//sort products by number sold
+
+router.get("/articles", getTopProducts);
 
 module.exports = router;
