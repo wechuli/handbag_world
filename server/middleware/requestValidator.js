@@ -73,7 +73,12 @@ module.exports = {
       publish: Joi.bool().required()
     }),
 
-    // product by id
-    
+    // products by id
+
+    productByIdSearchSchema: Joi.object({
+      ids: Joi.array()
+        .items(Joi.string().regex(/^[0-9a-fA-F]{24}$/))
+        .required()
+    })
   }
 };

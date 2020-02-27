@@ -75,10 +75,11 @@ module.exports = {
       let objectIds = [];
 
       ids.forEach(id => objectIds.push(mongoose.Types.ObjectId(id)));
-      console.log(objectIds)
-      console.log(typeof objectIds[0])
+      products = await Product.find({ _id: { $in: objectIds } })
+        .populate("type brand")
+        .exec();
 
-      res.status(200).json({ query: req.query });
+      res.status(200).json({ products });
     } catch (error) {
       res.status(500).json({ success: false, err: error });
     }

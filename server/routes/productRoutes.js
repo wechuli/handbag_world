@@ -57,7 +57,11 @@ router.post(
   addNewProduct
 );
 
-// get a product
-router.get("/article/byid", getProductsById);
+// get a product by id
+router.get(
+  "/article/byid",
+  validateBody(schemas.productByIdSearchSchema),
+  getProductsById
+);
 
 module.exports = router;
