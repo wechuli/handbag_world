@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const Brand = require("../models/Brand.model");
 const BagType = require("../models/BagType.model");
 const Product = require("../models/Product.model");
@@ -61,6 +62,23 @@ module.exports = {
       const product = new Product(req.body);
       await product.save();
       res.status(201).json({ success: true, article: product });
+    } catch (error) {
+      res.status(500).json({ success: false, err: error });
+    }
+  },
+
+  // get a product by ID
+
+  async getProductsById(req, res) {
+    try {
+      let { ids } = req.body;
+      let objectIds = [];
+
+      ids.forEach(id => objectIds.push(mongoose.Types.ObjectId(id)));
+      console.log(objectIds)
+      console.log(typeof objectIds[0])
+
+      res.status(200).json({ query: req.query });
     } catch (error) {
       res.status(500).json({ success: false, err: error });
     }

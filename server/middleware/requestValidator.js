@@ -71,6 +71,9 @@ module.exports = {
         .max(7)
         .min(0),
       publish: Joi.bool().required()
-    })
+    }),
+
+    // product by id
+    
   }
 };
